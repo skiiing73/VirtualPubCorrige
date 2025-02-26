@@ -10,9 +10,9 @@ class PubTest {
     void testApprovisionnerBar() {
         Pub pub = new Pub();
         Boisson coca = new Boisson("Coca");
-        pub.cave.add(coca);
+        pub.getCave().add(coca);
         pub.approvisionnerBar("Coca");
-        assertEquals(coca,pub.bar.serv("Coca"));
+        assertEquals(coca,pub.getBar().serv("Coca"));
     }
 
 }

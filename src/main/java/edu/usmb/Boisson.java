@@ -6,11 +6,11 @@ package edu.usmb;
  *
  */
 public class Boisson {
-	public String nom;
-	public Boolean alcoolise;
-	public Float degre;
-	public Float volume; // volume de la bouteille, cennette, fut ...
-	public Float prix;
+	protected String nom;
+	protected Boolean alcoolise;
+	private Float degre;
+	private Float volume; // volume de la bouteille, cennette, fut ...
+	private Float prix;
 	
 	/**
 	 * @param nom
@@ -19,9 +19,7 @@ public class Boisson {
 		this.nom = nom;
 		this.alcoolise = false;
 	}
-	public String getNom(){
-		return this.nom;
-	}
+
 	/**
 	 * @param nom
 	 * @param degre
@@ -31,7 +29,26 @@ public class Boisson {
 		this.degre = degre;
         this.alcoolise = degre > 0.0;
 	}
-	
+	public String getNom(){
+		return this.nom;
+	}
+
+	public Boolean getAlcoolise() {
+		return alcoolise;
+	}
+
+	public Float getDegre() {
+		return degre;
+	}
+
+	public Float getVolume() {
+		return volume;
+	}
+
+	public Float getPrix() {
+		return prix;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

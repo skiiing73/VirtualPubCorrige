@@ -1,26 +1,26 @@
 package edu.usmb;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Pierre Le Fameux
  *
  */
 public class Cocktail extends Boisson{
-	
+
 	private static class Ingrediant{
-		public String ingredient;
-		public Double quantite;
-		public boolean alcoolise;
-		public Ingrediant(String ingredient, Double quantite, Boolean alcoolise){
+		private final String ingredient;
+		private final Double quantite;
+
+        public Ingrediant(String ingredient, Double quantite){
 			this.ingredient = ingredient;
 			this.quantite = quantite;
-			this.alcoolise = alcoolise;
-		}
+        }
 
 	}
 
-	public ArrayList<Ingrediant> ingrediants;
+	private final List<Ingrediant> ingrediants;
 
 	
 	/**
@@ -38,19 +38,19 @@ public class Cocktail extends Boisson{
 	 * @param ingrediant
 	 * @param quantite
 	 */
-	public void add(String ingrediant, Double quantite, Boolean ingrediants_alcoolise) {
+	public void add(String ingrediant, Double quantite, Boolean ingrediantsAlcoolise) {
 		if (ingrediant == null) {
 			throw new NullPointerException("L'ingrédient ne peut pas être null.");
 		}
 		if (quantite == null) {
 			throw new NullPointerException("La quantité ne peut pas être null.");
 		}
-		if (alcoolise == null) {
+		if (getAlcoolise() == null) {
 			throw new NullPointerException("Le paramètre alcoolisé ne peut pas être null.");
 		}
 
-		this.ingrediants.add(new Ingrediant(ingrediant, quantite, ingrediants_alcoolise));
-		if (ingrediants_alcoolise) {
+		this.ingrediants.add(new Ingrediant(ingrediant, quantite));
+		if (Boolean.TRUE.equals(ingrediantsAlcoolise)) {
 			this.alcoolise = true;
 		}
 	}
@@ -74,8 +74,7 @@ public class Cocktail extends Boisson{
 		for (Ingrediant current : this.ingrediants) {
 			retour.append(current.ingredient).append(" ").append(current.quantite).append("%\t");
 		}
-		String results=retour.toString()+nom;
-		return results;
+        return retour+getNom();
 	}
 
 

@@ -14,7 +14,7 @@ class CaveTest {
         Boisson taken = cave.take("Vin");
 
         assertNotNull(taken, "La boisson doit être trouvée et retirée.");
-        assertEquals("Vin", taken.nom, "Le nom de la boisson récupérée doit être 'Vin'.");
+        assertEquals("Vin", taken.getNom(), "Le nom de la boisson récupérée doit être 'Vin'.");
         assertTrue(cave.toString().contains("Cave :\n"), "La cave ne doit plus contenir 'Vin'.");
     }
 

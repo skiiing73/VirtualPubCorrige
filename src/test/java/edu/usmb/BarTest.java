@@ -21,7 +21,7 @@ class BarTest {
 
 
     @Test
-    public void testToString() {
+    void testToString() {
         Bar bar = new Bar();
         bar.add(new Boisson("Coca"));
         bar.add(new Boisson("Bière", 5.0f));

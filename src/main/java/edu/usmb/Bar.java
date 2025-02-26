@@ -47,7 +47,7 @@ public class Bar {
 
 	public void add(Boisson boisson) {
 		if (boisson == null) return;
-		if (Boolean.TRUE.equals(boisson.alcoolise)) {
+		if (Boolean.TRUE.equals(boisson.getAlcoolise())) {
 			this.boissonAlcoolisee.add(boisson);
 		} else {
 			this.boissonFroide.add(boisson);
@@ -84,7 +84,7 @@ public class Bar {
 		Iterator<T> iterator = list.iterator();
 		while (iterator.hasNext()) {
 			T item = iterator.next();
-			if (item.nom.equalsIgnoreCase(name)) {
+			if (item.getNom().equalsIgnoreCase(name)) {
 				iterator.remove();
 				return item;
 			}

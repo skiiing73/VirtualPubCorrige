@@ -8,7 +8,7 @@ import java.util.List;
  * @author Pierre Le Fameux
  */
 public class Cave {
-	private List<Boisson> rayons;
+	private final List<Boisson> rayons;
 
 	public Cave() {
 		this.rayons = new ArrayList<>();
@@ -28,7 +28,7 @@ public class Cave {
 		Iterator<Boisson> iterator = this.rayons.iterator();
 		while (iterator.hasNext()) {
 			Boisson boisson = iterator.next();
-			if (boisson.nom.equalsIgnoreCase(nom)) {
+			if (boisson.getNom().equalsIgnoreCase(nom)) {
 				iterator.remove();
 				return boisson;
 			}

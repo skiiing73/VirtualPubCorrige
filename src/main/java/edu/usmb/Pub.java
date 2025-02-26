@@ -1,16 +1,30 @@
 package edu.usmb;
 
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Virtual PUB
  */
 public class Pub {
 
-	public Bar bar;
-	public Cave cave;
+	private static final Logger logger = Logger.getLogger(Pub.class.getName());
+
+	private final Bar bar;
+	private final Cave cave;
 
 	public Pub() {
 		this.bar = new Bar();
 		this.cave = new Cave();
+	}
+
+	public Bar getBar() {
+		return bar;
+	}
+
+	public Cave getCave() {
+		return cave;
 	}
 
 	public void approvisionnerBar(String nom) {
@@ -18,13 +32,18 @@ public class Pub {
 	}
 
 	public static void main(String[] args) {
+		// Configurer le logger
+		ConsoleHandler consoleHandler = new ConsoleHandler();
+		logger.addHandler(consoleHandler);
+		logger.setLevel(Level.INFO); // Niveau de log
+
 		/* Création du pub */
 		Pub pub = new Pub();
-		String nom_biere="Bière";
+		String nomBiere = "Bière";
 		Boisson coca = new Boisson("Coca");
 		Boisson eau = new Boisson("Eau");
 		Boisson whisky = new Boisson("Whisky", 40.0f);
-		Boisson biere = new Boisson(nom_biere, 8.0f);
+		Boisson biere = new Boisson(nomBiere, 8.0f);
 
 		pub.cave.add(coca);
 		pub.cave.add(coca);
@@ -35,29 +54,36 @@ public class Pub {
 		pub.cave.add(biere);
 		pub.cave.add(eau);
 
-		System.out.println("Cave initiale :");
-		System.out.println(pub.cave);
+		// Conditional logging
+		if (logger.isLoggable(Level.INFO)) {
+			logger.info("Cave initiale :");
+			logger.info(pub.cave.toString());
+		}
 
 		// Correction : normalisation des noms des boissons
-
-		pub.approvisionnerBar(nom_biere);
+		pub.approvisionnerBar(nomBiere);
 		pub.approvisionnerBar("Whisky");
 		pub.approvisionnerBar("Coca");
 		pub.approvisionnerBar("Eau");
 
-		Cocktail maz = new Cocktail("Mazout",true);
-		maz.add(nom_biere, 50.0,false);
-		maz.add("Coca", 50.0,true);
+		Cocktail maz = new Cocktail("Mazout", true);
+		maz.add(nomBiere, 50.0, false);
+		maz.add("Coca", 50.0, true);
 		pub.bar.add(maz);
 
 		Boisson cafe = new Boisson("Café");
 		pub.bar.addBoissonChaude(cafe);
 
+		// Conditional logging for pub.cave and pub.bar
+		if (logger.isLoggable(Level.INFO)) {
+			logger.info(pub.cave.toString());
+			logger.info(pub.bar.toString());
+		}
 
-		System.out.println(pub.cave);
-		System.out.println(pub.bar);
-
-		System.out.println("Boisson servie : " + pub.bar.serv("Café"));
-		System.out.println(pub.bar);
+		// Conditional logging for the served drink
+		if (logger.isLoggable(Level.INFO)) {
+			logger.info("Boisson servie : " + pub.bar.serv("Café"));
+			logger.info(pub.bar.toString());
+		}
 	}
 }
