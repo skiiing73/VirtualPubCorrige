@@ -7,41 +7,6 @@
     <groupId>edu.usmb</groupId>
     <artifactId>VirtualPub</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>VirtualPUB-Upgraded</name>
-
-    <description>Projet java qui implemente un PUB par skiing73 et kite-machine aka le coco et le thom's, vous pouvez acceder à sonarqube via ce lien : https://sonarcloud.io/summary/new_code?id=skiiing73_VirtualPubCorrige</description>
-
-    <url>https://github.com/skiiing73/VirtualPubCorrige</url>
-
-    <inceptionYear>2025</inceptionYear>
-
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>https://opensource.org/licenses/MIT</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>skiiing73</id>
-            <name>Corentin Degouey</name>
-            <email>corentin.degouey@etu.univ-smb.fr</email>
-            <roles>
-                <role>Lead Developer</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>Kite-machine</id>
-            <name>Thomas Bercier</name>
-            <email>thomas.bercier@etu.univ-smb.fr</email>
-            <roles>
-                <role>Senior Developer</role>
-            </roles>
-        </developer>
-    </developers>
-
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -55,29 +20,32 @@
         <sonar.tests>src/test/java</sonar.tests>
         <sonar.surefire.reportsPath>target/surefire-reports</sonar.surefire.reportsPath>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
     </properties>
 
     <dependencies>
-        <!-- JUnit 5 for Testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- JaCoCo Dependency for Code Coverage -->
         <dependency>
-            <groupId>org.jacoco</groupId>
-            <artifactId>org.jacoco.core</artifactId>
-            <version>0.8.9</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Maven Surefire Plugin to Execute Tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -86,8 +54,12 @@
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.1.2184</version>
+            </plugin>
 
-            <!-- JaCoCo Plugin to Generate Coverage Reports -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -108,65 +80,10 @@
                 </executions>
             </plugin>
 
-            <!-- SonarQube Plugin for Continuous Integration -->
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.9.1.2184</version>
-            </plugin>
-
-            <!-- Maven Site Plugin to generate reports -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.9.1</version>
-                <configuration>
-                    <reportPlugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-project-info-reports-plugin</artifactId>
-                            <version>3.2.1</version>
-                        </plugin>
-                    </reportPlugins>
-                    <siteDirectory>${project.build.directory}/site</siteDirectory>
-                    <inputEncoding>UTF-8</inputEncoding>
-                    <outputEncoding>UTF-8</outputEncoding>
-                </configuration>
-            </plugin>
         </plugins>
+
     </build>
-
-    <reporting>
-        <!-- Surefire Report Plugin -->
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>3.0.0-M7</version>
-                <configuration>
-                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
-                </configuration>
-            </plugin>
-
-            <!-- JaCoCo Report Configuration -->
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.9</version>
-                <reportSets>
-                    <reportSet>
-                        <id>jacoco-report</id>
-                        <reports>
-                            <report>report</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-        </plugins>
-    </reporting>
-
     <repositories>
-        <!-- Maven Central Repository -->
         <repository>
             <id>sonatype</id>
             <url>https://repo1.maven.org/maven2/</url>
