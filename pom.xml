@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <name>VirtualPUB-Upgraded</name>
 
-    <description>Projet java qui implemente un PUB par skiing73 et kite-machine aka le coco et le thom's</description>
+    <description>Projet java qui implemente un PUB par skiing73 et kite-machine aka le coco et le thom's, vous pouvez acceder à sonarqube via ce lien : https://sonarcloud.io/summary/new_code?id=skiiing73_VirtualPubCorrige</description>
 
     <url>https://github.com/skiiing73/VirtualPubCorrige</url>
 
@@ -41,6 +41,7 @@
             </roles>
         </developer>
     </developers>
+
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
