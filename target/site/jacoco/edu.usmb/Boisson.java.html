@@ -29,23 +29,18 @@ public class Boisson {
 <span class="fc" id="L29">	public Boisson(String nom, Float degre){</span>
 <span class="fc" id="L30">		this.nom = nom;</span>
 <span class="fc" id="L31">		this.degre = degre;</span>
-<span class="fc bfc" id="L32" title="All 2 branches covered.">		if (degre&gt;0.0) {</span>
-<span class="fc" id="L33">			this.alcoolise = true;</span>
-		}
-		else{
-<span class="fc" id="L36">			alcoolise =false;</span>
-		}
-<span class="fc" id="L38">	}</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        this.alcoolise = degre &gt; 0.0;</span>
+<span class="fc" id="L33">	}</span>
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString(){
-<span class="fc" id="L44">		String retour = this.nom;</span>
-<span class="fc bfc" id="L45" title="All 2 branches covered.">		if(this.alcoolise){</span>
-<span class="fc" id="L46">			return retour + &quot; (l'abus d'alcool est dangereux pour la sante)&quot;;</span>
+<span class="fc" id="L39">		String retour = this.nom;</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">		if(Boolean.TRUE.equals(this.alcoolise)){</span>
+<span class="fc" id="L41">			return retour + &quot; (l'abus d'alcool est dangereux pour la sante)&quot;;</span>
 		}else{
-<span class="fc" id="L48">			return retour;</span>
+<span class="fc" id="L43">			return retour;</span>
 		}
 	}
 }

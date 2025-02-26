@@ -20,11 +20,11 @@ public class Pub {
 	public static void main(String[] args) {
 		/* Création du pub */
 		Pub pub = new Pub();
-
+		String nom_biere="Bière";
 		Boisson coca = new Boisson("Coca");
 		Boisson eau = new Boisson("Eau");
 		Boisson whisky = new Boisson("Whisky", 40.0f);
-		Boisson biere = new Boisson("Bière", 8.0f);
+		Boisson biere = new Boisson(nom_biere, 8.0f);
 
 		pub.cave.add(coca);
 		pub.cave.add(coca);
@@ -39,13 +39,14 @@ public class Pub {
 		System.out.println(pub.cave);
 
 		// Correction : normalisation des noms des boissons
-		pub.approvisionnerBar("Bière");
+
+		pub.approvisionnerBar(nom_biere);
 		pub.approvisionnerBar("Whisky");
 		pub.approvisionnerBar("Coca");
 		pub.approvisionnerBar("Eau");
 
 		Cocktail maz = new Cocktail("Mazout",true);
-		maz.add("Bière", 50.0,false);
+		maz.add(nom_biere, 50.0,false);
 		maz.add("Coca", 50.0,true);
 		pub.bar.add(maz);
 

@@ -20,11 +20,11 @@ public class Pub {
 	public static void main(String[] args) {
 		/* Création du pub */
 <span class="nc" id="L22">		Pub pub = new Pub();</span>
-
+<span class="nc" id="L23">		String nom_biere=&quot;Bière&quot;;</span>
 <span class="nc" id="L24">		Boisson coca = new Boisson(&quot;Coca&quot;);</span>
 <span class="nc" id="L25">		Boisson eau = new Boisson(&quot;Eau&quot;);</span>
 <span class="nc" id="L26">		Boisson whisky = new Boisson(&quot;Whisky&quot;, 40.0f);</span>
-<span class="nc" id="L27">		Boisson biere = new Boisson(&quot;Bière&quot;, 8.0f);</span>
+<span class="nc" id="L27">		Boisson biere = new Boisson(nom_biere, 8.0f);</span>
 
 <span class="nc" id="L29">		pub.cave.add(coca);</span>
 <span class="nc" id="L30">		pub.cave.add(coca);</span>
@@ -39,25 +39,26 @@ public class Pub {
 <span class="nc" id="L39">		System.out.println(pub.cave);</span>
 
 		// Correction : normalisation des noms des boissons
-<span class="nc" id="L42">		pub.approvisionnerBar(&quot;Bière&quot;);</span>
-<span class="nc" id="L43">		pub.approvisionnerBar(&quot;Whisky&quot;);</span>
-<span class="nc" id="L44">		pub.approvisionnerBar(&quot;Coca&quot;);</span>
-<span class="nc" id="L45">		pub.approvisionnerBar(&quot;Eau&quot;);</span>
 
-<span class="nc" id="L47">		Cocktail maz = new Cocktail(&quot;Mazout&quot;,true);</span>
-<span class="nc" id="L48">		maz.add(&quot;Bière&quot;, 50.0,false);</span>
-<span class="nc" id="L49">		maz.add(&quot;Coca&quot;, 50.0,true);</span>
-<span class="nc" id="L50">		pub.bar.add(maz);</span>
+<span class="nc" id="L43">		pub.approvisionnerBar(nom_biere);</span>
+<span class="nc" id="L44">		pub.approvisionnerBar(&quot;Whisky&quot;);</span>
+<span class="nc" id="L45">		pub.approvisionnerBar(&quot;Coca&quot;);</span>
+<span class="nc" id="L46">		pub.approvisionnerBar(&quot;Eau&quot;);</span>
 
-<span class="nc" id="L52">		Boisson cafe = new Boisson(&quot;Café&quot;);</span>
-<span class="nc" id="L53">		pub.bar.addBoissonChaude(cafe);</span>
+<span class="nc" id="L48">		Cocktail maz = new Cocktail(&quot;Mazout&quot;,true);</span>
+<span class="nc" id="L49">		maz.add(nom_biere, 50.0,false);</span>
+<span class="nc" id="L50">		maz.add(&quot;Coca&quot;, 50.0,true);</span>
+<span class="nc" id="L51">		pub.bar.add(maz);</span>
+
+<span class="nc" id="L53">		Boisson cafe = new Boisson(&quot;Café&quot;);</span>
+<span class="nc" id="L54">		pub.bar.addBoissonChaude(cafe);</span>
 
 
-<span class="nc" id="L56">		System.out.println(pub.cave);</span>
-<span class="nc" id="L57">		System.out.println(pub.bar);</span>
+<span class="nc" id="L57">		System.out.println(pub.cave);</span>
+<span class="nc" id="L58">		System.out.println(pub.bar);</span>
 
-<span class="nc" id="L59">		System.out.println(&quot;Boisson servie : &quot; + pub.bar.serv(&quot;Café&quot;));</span>
-<span class="nc" id="L60">		System.out.println(pub.bar);</span>
-<span class="nc" id="L61">	}</span>
+<span class="nc" id="L60">		System.out.println(&quot;Boisson servie : &quot; + pub.bar.serv(&quot;Café&quot;));</span>
+<span class="nc" id="L61">		System.out.println(pub.bar);</span>
+<span class="nc" id="L62">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

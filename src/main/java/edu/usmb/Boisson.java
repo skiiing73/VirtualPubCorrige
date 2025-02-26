@@ -29,12 +29,7 @@ public class Boisson {
 	public Boisson(String nom, Float degre){
 		this.nom = nom;
 		this.degre = degre;
-		if (degre>0.0) {
-			this.alcoolise = true;
-		}
-		else{
-			alcoolise =false;
-		}
+        this.alcoolise = degre > 0.0;
 	}
 	
 	/* (non-Javadoc)
@@ -42,7 +37,7 @@ public class Boisson {
 	 */
 	public String toString(){
 		String retour = this.nom;
-		if(this.alcoolise){
+		if(Boolean.TRUE.equals(this.alcoolise)){
 			return retour + " (l'abus d'alcool est dangereux pour la sante)";
 		}else{
 			return retour;

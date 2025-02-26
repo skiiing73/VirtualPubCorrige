@@ -8,15 +8,15 @@ import java.util.List;
  * @author Pierre Le Fameux
  */
 public class Bar {
-	private List&lt;Boisson&gt; boissonChaude;
-	private List&lt;Boisson&gt; boissonFroide;
-	private List&lt;Boisson&gt; boissonAlcoolisee;
-	private List&lt;Cocktail&gt; cocktailSansAlcool;
-	private List&lt;Cocktail&gt; cocktailAvecAlcool;
+	private final List&lt;Boisson&gt; boissonChaude;
+	private final List&lt;Boisson&gt; boissonFroide;
+	private final List&lt;Boisson&gt; boissonAlcoolisee;
+	private final List&lt;Cocktail&gt; cocktailSansAlcool;
+	private final List&lt;Cocktail&gt; cocktailAvecAlcool;
 
 
 	public List&lt;Boisson&gt; getBoissonFroide() {
-<span class="fc" id="L19">		return boissonFroide;</span>
+<span class="nc" id="L19">		return boissonFroide;</span>
 	}
 
 	public List&lt;Boisson&gt; getBoissonChaude() {
@@ -24,11 +24,11 @@ public class Bar {
 	}
 
 	public List&lt;Cocktail&gt; getCocktailSansAlcool() {
-<span class="fc" id="L27">		return cocktailSansAlcool;</span>
+<span class="nc" id="L27">		return cocktailSansAlcool;</span>
 	}
 
 	public List&lt;Cocktail&gt; getCocktailAvecAlcool() {
-<span class="fc" id="L31">		return cocktailAvecAlcool;</span>
+<span class="nc" id="L31">		return cocktailAvecAlcool;</span>
 	}
 
 	public List&lt;Boisson&gt; getBoissonAlcoolisee() {
@@ -47,7 +47,7 @@ public class Bar {
 
 	public void add(Boisson boisson) {
 <span class="pc bpc" id="L49" title="1 of 2 branches missed.">		if (boisson == null) return;</span>
-<span class="fc bfc" id="L50" title="All 2 branches covered.">		if (boisson.alcoolise) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">		if (Boolean.TRUE.equals(boisson.alcoolise)) {</span>
 <span class="fc" id="L51">			this.boissonAlcoolisee.add(boisson);</span>
 		} else {
 <span class="fc" id="L53">			this.boissonFroide.add(boisson);</span>
@@ -55,56 +55,58 @@ public class Bar {
 <span class="fc" id="L55">	}</span>
 
 	public void add(Cocktail cocktail) {
-<span class="nc bnc" id="L58" title="All 2 branches missed.">		if (cocktail == null) return;</span>
-<span class="nc bnc" id="L59" title="All 2 branches missed.">		if (cocktail.alcoolFree()) {</span>
-<span class="nc" id="L60">			this.cocktailSansAlcool.add(cocktail);</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">		if (cocktail == null) return;</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">		if (Boolean.TRUE.equals(cocktail.alcoolFree())) {</span>
+<span class="fc" id="L60">			this.cocktailSansAlcool.add(cocktail);</span>
+
 		} else {
-<span class="nc" id="L62">			this.cocktailAvecAlcool.add(cocktail);</span>
+<span class="fc" id="L63">			this.cocktailAvecAlcool.add(cocktail);</span>
 		}
-<span class="nc" id="L64">	}</span>
+<span class="fc" id="L65">	}</span>
+
 	public void addBoissonChaude(Boisson boisson) {
-<span class="nc" id="L66">		this.boissonChaude.add(boisson);</span>
-<span class="nc" id="L67">	}</span>
+<span class="nc" id="L68">		this.boissonChaude.add(boisson);</span>
+<span class="nc" id="L69">	}</span>
 
 	public Object serv(String command) {
-<span class="pc bpc" id="L70" title="2 of 4 branches missed.">		if (command == null || command.isEmpty()) return null;</span>
+<span class="pc bpc" id="L72" title="2 of 4 branches missed.">		if (command == null || command.isEmpty()) return null;</span>
 
-<span class="fc" id="L72">		Object result = removeIfExists(boissonFroide, command);</span>
-<span class="fc bfc" id="L73" title="All 2 branches covered.">		if (result == null) result = removeIfExists(boissonAlcoolisee, command);</span>
-<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (result == null) result = removeIfExists(boissonChaude, command);</span>
-<span class="fc bfc" id="L75" title="All 2 branches covered.">		if (result == null) result = removeIfExists(cocktailSansAlcool, command);</span>
-<span class="fc bfc" id="L76" title="All 2 branches covered.">		if (result == null) result = removeIfExists(cocktailAvecAlcool, command);</span>
+<span class="fc" id="L74">		Object result = removeIfExists(boissonFroide, command);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">		if (result == null) result = removeIfExists(boissonAlcoolisee, command);</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">		if (result == null) result = removeIfExists(boissonChaude, command);</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">		if (result == null) result = removeIfExists(cocktailSansAlcool, command);</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">		if (result == null) result = removeIfExists(cocktailAvecAlcool, command);</span>
 
-<span class="fc" id="L78">		return result;</span>
+<span class="fc" id="L80">		return result;</span>
 	}
 
 	private &lt;T extends Boisson&gt; T removeIfExists(List&lt;T&gt; list, String name) {
-<span class="fc" id="L82">		Iterator&lt;T&gt; iterator = list.iterator();</span>
-<span class="fc bfc" id="L83" title="All 2 branches covered.">		while (iterator.hasNext()) {</span>
-<span class="fc" id="L84">			T item = iterator.next();</span>
-<span class="pc bpc" id="L85" title="1 of 2 branches missed.">			if (item.nom.equalsIgnoreCase(name)) {</span>
-<span class="fc" id="L86">				iterator.remove();</span>
-<span class="fc" id="L87">				return item;</span>
+<span class="fc" id="L84">		Iterator&lt;T&gt; iterator = list.iterator();</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">		while (iterator.hasNext()) {</span>
+<span class="fc" id="L86">			T item = iterator.next();</span>
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">			if (item.nom.equalsIgnoreCase(name)) {</span>
+<span class="fc" id="L88">				iterator.remove();</span>
+<span class="fc" id="L89">				return item;</span>
 			}
-<span class="nc" id="L89">		}</span>
-<span class="fc" id="L90">		return null;</span>
+<span class="nc" id="L91">		}</span>
+<span class="fc" id="L92">		return null;</span>
 	}
 
 	@Override
 	public String toString() {
-<span class="fc" id="L95">        return &quot;Bar :\n&quot; + &quot;\t Sans alcool\n&quot; + formatList(boissonFroide) +</span>
-<span class="fc" id="L96">                &quot;\t Avec alcool\n&quot; + formatList(boissonAlcoolisee) +</span>
-<span class="fc" id="L97">                &quot;\t Cocktail sans alcool\n&quot; + formatList(cocktailSansAlcool) +</span>
-<span class="fc" id="L98">                &quot;\t Cocktail avec alcool\n&quot; + formatList(cocktailAvecAlcool) +</span>
-<span class="fc" id="L99">                &quot;\t Boissons chaudes\n&quot; + formatList(boissonChaude);</span>
+<span class="fc" id="L97">        return &quot;Bar :\n&quot; + &quot;\t Sans alcool\n&quot; + formatList(boissonFroide) +</span>
+<span class="fc" id="L98">                &quot;\t Avec alcool\n&quot; + formatList(boissonAlcoolisee) +</span>
+<span class="fc" id="L99">                &quot;\t Cocktail sans alcool\n&quot; + formatList(cocktailSansAlcool) +</span>
+<span class="fc" id="L100">                &quot;\t Cocktail avec alcool\n&quot; + formatList(cocktailAvecAlcool) +</span>
+<span class="fc" id="L101">                &quot;\t Boissons chaudes\n&quot; + formatList(boissonChaude);</span>
 	}
 
 	private &lt;T&gt; String formatList(List&lt;T&gt; list) {
-<span class="fc" id="L103">		StringBuilder sb = new StringBuilder();</span>
-<span class="fc bfc" id="L104" title="All 2 branches covered.">		for (T item : list) {</span>
-<span class="fc" id="L105">			sb.append(&quot;\t\t&quot;).append(item).append(&quot;\n&quot;);</span>
-<span class="fc" id="L106">		}</span>
-<span class="fc" id="L107">		return sb.toString();</span>
+<span class="fc" id="L105">		StringBuilder sb = new StringBuilder();</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">		for (T item : list) {</span>
+<span class="fc" id="L107">			sb.append(&quot;\t\t&quot;).append(item).append(&quot;\n&quot;);</span>
+<span class="fc" id="L108">		}</span>
+<span class="fc" id="L109">		return sb.toString();</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

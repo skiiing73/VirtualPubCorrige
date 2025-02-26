@@ -12,13 +12,15 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.projectKey>VirtualPub</sonar.projectKey>
-        <sonar.projectName>VirtualPub</sonar.projectName>
+        <sonar.projectKey>skiiing73_VirtualPubCorrige</sonar.projectKey>
+        <sonar.projectName>VirtualPubCorrige</sonar.projectName>
+        <sonar.organization>skiiing73</sonar.organization>
+        <sonar.token>e13cd4c076bfde130c1f080a1cd80010d3e1058d</sonar.token>
         <sonar.sources>src/main/java</sonar.sources>
         <sonar.tests>src/test/java</sonar.tests>
         <sonar.surefire.reportsPath>target/surefire-reports</sonar.surefire.reportsPath>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.login>TON_JETON</sonar.login>
+
     </properties>
 
     <dependencies>
@@ -26,6 +28,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>

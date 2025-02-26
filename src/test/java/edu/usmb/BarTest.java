@@ -23,16 +23,16 @@ class BarTest {
     @Test
     public void testToString() {
         Bar bar = new Bar();
-        bar.getBoissonFroide().add(new Boisson("Coca"));
-        bar.getBoissonAlcoolisee().add(new Boisson("Bière", 5.0f));
-        bar.getCocktailSansAlcool().add(new Cocktail("Virgin Mojito",false));
-        bar.getCocktailAvecAlcool().add(new Cocktail("Margarita",true));
+        bar.add(new Boisson("Coca"));
+        bar.add(new Boisson("Bière", 5.0f));
+        bar.add(new Cocktail("Virgin_Mojito",false));
+        bar.add(new Cocktail("Margarita",true));
         bar.getBoissonChaude().add(new Boisson("Café"));
 
         String result = bar.toString();
         assertTrue(result.contains("Coca"));
         assertTrue(result.contains("Bière"));
-        assertTrue(result.contains("Virgin Mojito"));
+        assertTrue(result.contains("Virgin_Mojito"));
         assertTrue(result.contains("Margarita"));
         assertTrue(result.contains("Café"));
     }

@@ -8,11 +8,11 @@ import java.util.List;
  * @author Pierre Le Fameux
  */
 public class Bar {
-	private List<Boisson> boissonChaude;
-	private List<Boisson> boissonFroide;
-	private List<Boisson> boissonAlcoolisee;
-	private List<Cocktail> cocktailSansAlcool;
-	private List<Cocktail> cocktailAvecAlcool;
+	private final List<Boisson> boissonChaude;
+	private final List<Boisson> boissonFroide;
+	private final List<Boisson> boissonAlcoolisee;
+	private final List<Cocktail> cocktailSansAlcool;
+	private final List<Cocktail> cocktailAvecAlcool;
 
 
 	public List<Boisson> getBoissonFroide() {
@@ -47,7 +47,7 @@ public class Bar {
 
 	public void add(Boisson boisson) {
 		if (boisson == null) return;
-		if (boisson.alcoolise) {
+		if (Boolean.TRUE.equals(boisson.alcoolise)) {
 			this.boissonAlcoolisee.add(boisson);
 		} else {
 			this.boissonFroide.add(boisson);
@@ -56,12 +56,14 @@ public class Bar {
 
 	public void add(Cocktail cocktail) {
 		if (cocktail == null) return;
-		if (cocktail.alcoolFree()) {
+		if (Boolean.TRUE.equals(cocktail.alcoolFree())) {
 			this.cocktailSansAlcool.add(cocktail);
+
 		} else {
 			this.cocktailAvecAlcool.add(cocktail);
 		}
 	}
+
 	public void addBoissonChaude(Boisson boisson) {
 		this.boissonChaude.add(boisson);
 	}

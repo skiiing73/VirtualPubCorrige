@@ -1,7 +1,6 @@
 package edu.usmb;
 
-import java.util.Vector; 
-import java.util.Enumeration;
+import java.util.ArrayList;
 
 /**
  * @author Pierre Le Fameux
@@ -9,21 +8,20 @@ import java.util.Enumeration;
  */
 public class Cocktail extends Boisson{
 	
-	private class Ingrediant{
-		public String ingrediant;
+	private static class Ingrediant{
+		public String ingredient;
 		public Double quantite;
 		public boolean alcoolise;
-		public Ingrediant(String ingrediant, Double quantite, Boolean alcoolise){
-			this.ingrediant = ingrediant;
+		public Ingrediant(String ingredient, Double quantite, Boolean alcoolise){
+			this.ingredient = ingredient;
 			this.quantite = quantite;
 			this.alcoolise = alcoolise;
 		}
 
 	}
-	
-	public String nom;
-	public Vector<Ingrediant> ingrediants;
-	public Boolean alcoolise;
+
+	public ArrayList<Ingrediant> ingrediants;
+
 	
 	/**
 	 * Creates a Cocktail with its name
@@ -31,8 +29,8 @@ public class Cocktail extends Boisson{
 	 */
 	public Cocktail(String nom,Boolean alcoolise){
 		super(nom);
-		this.ingrediants = new Vector<Ingrediant>();
-		this.alcoolise = false;
+		this.ingrediants = new ArrayList<>();
+		this.alcoolise = alcoolise;
 	}
 	
 	/**
@@ -40,7 +38,7 @@ public class Cocktail extends Boisson{
 	 * @param ingrediant
 	 * @param quantite
 	 */
-	public void add(String ingrediant, Double quantite, Boolean alcoolise) {
+	public void add(String ingrediant, Double quantite, Boolean ingrediants_alcoolise) {
 		if (ingrediant == null) {
 			throw new NullPointerException("L'ingrédient ne peut pas être null.");
 		}
@@ -51,8 +49,8 @@ public class Cocktail extends Boisson{
 			throw new NullPointerException("Le paramètre alcoolisé ne peut pas être null.");
 		}
 
-		this.ingrediants.add(new Ingrediant(ingrediant, quantite, alcoolise));
-		if (alcoolise) {
+		this.ingrediants.add(new Ingrediant(ingrediant, quantite, ingrediants_alcoolise));
+		if (ingrediants_alcoolise) {
 			this.alcoolise = true;
 		}
 	}
@@ -63,21 +61,22 @@ public class Cocktail extends Boisson{
 	 * @return true if the Cocktail is free alcool
 	 */
 	public Boolean alcoolFree(){
+
 		return !this.alcoolise;
 	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
-	public String toString(){
-		String retour = new String();
-		Enumeration e = this.ingrediants.elements ();
-		Ingrediant current;
-		while (e.hasMoreElements ()) {
-			current = (Ingrediant)e.nextElement();
-			retour = retour + current.ingrediant + " " + current.quantite + "%" + "\t";
+	@Override
+	public String toString() {
+		StringBuilder retour = new StringBuilder();
+		for (Ingrediant current : this.ingrediants) {
+			retour.append(current.ingredient).append(" ").append(current.quantite).append("%\t");
 		}
-		return retour;
+		String results=retour.toString()+nom;
+		return results;
 	}
+
 
 }

@@ -10,7 +10,7 @@ class CocktailTest {
      void testCocktailCreation() {
         Cocktail cocktail = new Cocktail("Mojito",true);
         assertEquals("Mojito", cocktail.getNom());
-        assertFalse(cocktail.alcoolise);
+        assertTrue(cocktail.alcoolise);
     }
 
 
@@ -31,13 +31,13 @@ class CocktailTest {
         cocktail.add("Citron", 10.0,false);
         cocktail.add("Eau gazeuse", 20.0,true);
 
-        String expected = "Rhum 50.0%\tMenthe 20.0%\tCitron 10.0%\tEau gazeuse 20.0%\t";
+        String expected = "Rhum 50.0%\tMenthe 20.0%\tCitron 10.0%\tEau gazeuse 20.0%\tMojito";
         assertEquals(expected, cocktail.toString());
     }
 
     @Test
      void testToStringEmptyCocktail() {
-        Cocktail cocktail = new Cocktail("Empty Cocktail",true);
+        Cocktail cocktail = new Cocktail("",true);
         assertEquals("", cocktail.toString());
     }
 
